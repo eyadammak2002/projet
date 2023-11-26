@@ -5,25 +5,25 @@ public class Personne {
     protected String prenom;
     protected int cin;
     protected Date date_naissance;
-    protected Date date_auj;
+  
     
         public Personne()
         {   
-            nom = "null" ; 
-            prenom = "null" ;
+            nom = "" ; 
+            prenom = "" ;
             cin = 0 ;
             date_naissance=new Date();
-            date_auj=new Date();
+            
             
         }
     
-        public Personne(String nom, String prenom,int cin,Date date_naissance, Date date_auj)
+        public Personne(String nom, String prenom,int cin,Date date_naissance)
         { 
             this.nom = nom ;
             this.prenom = prenom ;
             this.cin = cin ;
             this.date_naissance=date_naissance;
-            this.date_auj = date_auj;
+          
 
         }
 
@@ -59,18 +59,11 @@ public class Personne {
         public void setprenom(String prenom) {
             this.prenom = prenom;
         }
-        
         public void setseconde(int cin) {
             this.cin = cin;
         }
    
-        public Date getdate_auj() {
-            return date_auj;
-        }
-        public void setdate_auj(Date date_auj) {
-            this.date_auj = date_auj;
-        }
- 
+       
 
         public void affiche()
         {   
@@ -83,7 +76,7 @@ public class Personne {
         return nom+" , "+prenom+" , cin"+cin+"\ndate de naissance:"+this.date_naissance.ToString(); 
     }
 
-    public int age()
+    public int age(Date date_auj)
     {   int b;
         int a;
        

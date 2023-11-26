@@ -8,8 +8,8 @@ public class Agence {
         public Agence()
         {   
             code =0; 
-            nom_banque = "null" ;
-            adresse = "null" ;
+            nom_banque = "" ;
+            adresse = "" ;
             date_lance=new Date();
         }
     
@@ -59,7 +59,7 @@ public class Agence {
         public String ToString()
         {
            String s;
-           s= this.date_lance.toString()+"code :"+code+", nom_banque :"+nom_banque+",adresse :"+adresse;
+           s= "code :"+code+", nom_banque :"+nom_banque+",adresse :"+adresse+this.date_lance.toString();
            return s;
         }
 

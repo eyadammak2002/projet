@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class Date{
     private int jour;
@@ -7,10 +7,15 @@ public class Date{
    
 
     public Date()
-    {
-       this.jour = 0 ;
-        this.mois =0 ;
-        this.annee = 0 ; 
+    {   System.out.println("entrer date d'aujourd'hui");
+        Scanner dat = new Scanner (System.in);
+        System.out.println("entrer le jour :"); 
+        this.jour= dat.nextInt();
+        System.out.println("entrer le mois :"); 
+        this.mois= dat.nextInt();
+        System.out.println("entrer l'année :"); 
+        this.annee= dat.nextInt();
+        System.out.println("date aujourd'hui : "+this.jour+"/"+this.mois+"/"+this.annee);
     }
     
 
@@ -54,7 +59,7 @@ public class Date{
 
     int diffDate(Date d )
     {   int res;
-        res=Math.abs(((this.annee-d.annee-1)*360)+((this.mois)*30+(12-d.mois)*30)+(this.jour)+(30-d.jour));
+        res=((this.annee-d.annee-1)*360)+((this.mois)*30+(12-d.mois)*30)+(this.jour)+(30-d.jour);
         return res;
     }
    

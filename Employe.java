@@ -5,31 +5,22 @@ public class Employe extends Personne {
     private String situation;
     private double salaire;
     private Date date_embouche;
-  
-    
 
-    
-
-    
     public Employe()
     {   super();
-        fonction = "null" ; 
-        situation = "null"; 
+        fonction = "" ; 
+        situation = ""; 
         date_embouche=new Date();
         salaire = 0 ;
-        
-     
-        
     }
 
-    public Employe(String nom, String prenom, int cin ,Date date_naissance,Date date_auj,String fonction, String situation,double salaire,Date date_embouche)
-    {   super(nom,prenom,cin,date_naissance,date_auj);
+    public Employe(String nom, String prenom, int cin ,Date date_naissance,String fonction, String situation,double salaire,Date date_embouche,Date date_auj)
+    {   
+        super(nom,prenom,cin,date_naissance);
         this.fonction = fonction ;
-        this.situation = "contarctuelle" ;
         this.salaire = salaire; 
         this.date_embouche = date_embouche;
-        
-      
+        this.situation(date_auj);
     }
 
    
@@ -55,7 +46,7 @@ public class Employe extends Personne {
     public void setsituation(String situation) {
         this.situation = situation;
     }
-    
+
     public void setsalaire(double salaire) {
         this.salaire = salaire;
     }
@@ -66,7 +57,7 @@ public class Employe extends Personne {
     
     
     
-     public int ancien()
+    public int ancien(Date date_auj)
     {   int b;
         int a;
        
@@ -74,23 +65,28 @@ public class Employe extends Personne {
         b = a/360;
         return b;  
      }
+
     
-    public void afficheAncien(){
-    System.out.println("\n"+this.ancien() +"ans de travail");
+     public void afficheSalaireAnnuelle(Date date_auj){
+     System.out.println(this.ancien(date_auj)>=5?this.salaire*15:this.salaire*12);
+    } 
+
+    public void afficheAncien(Date date_auj){
+    System.out.println("\n"+this.ancien(date_auj) +"ans de travail");
     } 
         
   
-    public boolean testAncien(){
-        return ( this.ancien()>=5);
+    
+
+    public boolean testSituation(Date date_auj){
+        return ( this.ancien(date_auj)>=4);
     }
 
-    public boolean testSituation(){
-        return ( this.ancien()>=4);
-    }
-
-    public void situation() {   
-        if(this.testSituation())
+    public void situation(Date date_auj) {   
+        if(this.testSituation(date_auj))
         this.setsituation("titulaire");
+        else
+        this.setsituation("contractuelle");
     }
 
     public void affiche()
@@ -98,7 +94,8 @@ public class Employe extends Personne {
         super.affiche();
         System.out.print("\ndate d'embouche de "+super.nom+": "); 
         this.date_embouche.affiche();
-        this.afficheAncien();
+       
+
     }
 
 
@@ -109,13 +106,15 @@ public class Employe extends Personne {
     }
 
     public static void main(String[] args)     
-    {
-         Date date_embouche= new Date(1,9,2022);
-         Date date_auj= new Date (1,9,2024);
-          Date date_naissance= new Date (2,7,2002);
-         Employe e1= new Employe("eya","dammak",11167567,date_naissance,date_auj,"développeur","contractuelle",3.500,date_embouche);
-        
-         e1.affiche();   
+    {    Date date_auj= new Date();
+         Date date_embouche= new Date(1,7,2012); 
+         Date date_naissance= new Date (2,7,2002);
+         Employe e1= new Employe("eya","dammak",11167567,date_naissance,"développeur","contractuelle",35.500,date_embouche,date_auj);
+         e1.affiche(); 
+         e1.afficheAncien( date_auj);
+         e1.afficheSalaireAnnuelle( date_auj);
+         
+           
         
         
     }

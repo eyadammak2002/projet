@@ -14,7 +14,13 @@ public class Operation {
     } 
         
         
-
+    public void remplir(Operation tabOperation[i]){
+        for(int i=0;i<tabOperation.length;i++)
+    {
+        this.tabOperation[i]=new Operation(date_operation, type, montant, agence);
+        
+    }
+    }
 
 }
 
