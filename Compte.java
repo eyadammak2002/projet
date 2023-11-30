@@ -1,3 +1,5 @@
+
+
 public class Compte {
     private Personne titulaire ;
     private int num_compte;
@@ -8,7 +10,7 @@ public class Compte {
     protected boolean autorisation;
     private double frais_compte=15;
 
-    Operation[][]tabOperation;
+    Operation[] operations;
 
 
 
@@ -35,7 +37,7 @@ public class Compte {
         if (strType.equals(new String ("courant")))
             setautorisation(true);
         else
-            setautorisation(false);
+            setautorisation(false);  
     }
 
    
@@ -53,7 +55,7 @@ public class Compte {
         return date_creation;}
     public Agence agence()
         {return agence;}
-     public String strType( )
+     public String getstrType( )
         {return strType;}    
   
  
@@ -80,27 +82,46 @@ public class Compte {
         this.titulaire.affiche(); 
     System.out.print( "\ndate de créaction du compte:" ); 
         this.date_creation.affiche(); 
-    System.out.println( "\nnumero du compte:"+num_compte+" , solde:"+solde +" \ntype du compte : "+strType+" \nnautorisation : "+autorisation); 
+    System.out.println( "\nnumero du compte:"+num_compte+" , solde:"+solde +" \ntype du compte : "+strType+" \nautorisation : "+autorisation); 
+   
     }
 
-    
-    void versement(int montant){
-        solde=solde+montant;
-    }
-    
-    void retrait(int montant){
+    void retrait(double montant,DateTime date){   
         solde=solde-montant;
+        this.operations[this.operations.length]=new Operation(date, strType, montant, agence);
     }
+    
+    void versement(double montant,DateTime date){   
+        solde=solde+montant;
+        this.operations[this.operations.length]=new Operation(date, strType, montant, agence);
+    }
+    
+    
 
-    public void fraisTrimestre(Date date_auj){
-        int a;
-        a=((date_auj.getannee()-date_creation.getannee()-1)*3+((date_auj.getmois())*30+(12-date_creation.getmois())*30)+(date_auj.getjour()+30-date_auj.getjour()))/30/3;
-        for(int i=0;i<a;i++)
+    
+
+    public void fraisTrimestre(DateTime date){
+        if ((date.getmois()==3)||(date.getmois()==6)||(date.getmois()==9)||(date.getmois()==12))        
         {
             solde=solde-frais_compte;
+            this.operations[this.operations.length]=new Operation(date, strType,frais_compte, agence);
+
         }
-    } 
+    }
+
     
+    
+    public void extraitBancaire() {
+        System.out.println("Extrait bancaire pour le compte " + num_compte);
+        // for (Operation  operation: operations) {
+        //     System.out.println(operation);
+        // }
+        for(int i=0;i<operations.length;i++)
+        this.operations[i].affiche();
+    }
+    
+   
+    /*
     public static void main(String[] args)     
     {    Date date_creation= new Date (1,1,2023);
          Date date_naissance= new Date (2,7,2002);
@@ -113,5 +134,5 @@ public class Compte {
          c1.fraisTrimestre(date_auj);
          c1.affiche();
     }
-
+*/
 }

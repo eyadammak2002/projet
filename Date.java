@@ -57,19 +57,19 @@ public class Date{
     }
     
 
-    int diffDate(Date d )
+    public int diffDate(Date d )
     {   int res;
-        res=((this.annee-d.annee-1)*360)+((this.mois)*30+(12-d.mois)*30)+(this.jour)+(30-d.jour);
+        res=Math.abs(((this.annee-d.annee-1)*360)+((this.mois)*30+(12-d.mois)*30)+(this.jour)+(30-d.jour));
         return res;
     }
    
-
+/* 
 public static void main(String[] args) {
     Date d1=new Date(1,1,2024);
     Date d2=new Date(1,1,2022);
     System.out.println(d1.diffDate(d2));
 
 }
-  
+  */
 
 }

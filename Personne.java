@@ -71,19 +71,19 @@ public class Personne {
             this.date_naissance.affiche();
         }
 
-    public String ToString()
-    { 
-        return nom+" , "+prenom+" , cin"+cin+"\ndate de naissance:"+this.date_naissance.ToString(); 
-    }
+        public String ToString()
+        { 
+            return nom+" , "+prenom+" , cin"+cin+"\ndate de naissance:"+this.date_naissance.ToString(); 
+        }
 
-    public int age(Date date_auj)
-    {   int b;
-        int a;
-       
-        a=date_auj.diffDate(date_naissance);
-        b = a/360;
-        return b;  
-     }
+        public int ancien(Date date)
+        {   int b;
+            int a;
+        
+            a=date.diffDate(getdate_naissance());
+            b = a/360;
+            return b;  
+        }
         
         
     
