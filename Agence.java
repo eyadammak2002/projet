@@ -21,6 +21,16 @@ public class Agence {
             this.date_lance=date_lance;
 
         }
+        public Agence(int code, String nom_banque,String adresse,int a,int m,int j)
+        { 
+            this.code =code; 
+            this.nom_banque = nom_banque;
+            this.adresse = adresse ;
+            this.date_lance=new Date(a,m,j);
+
+        }
+
+    
     
         public int getcode() {
             return code;
@@ -54,6 +64,7 @@ public class Agence {
         {   System.out.println("code:"+code+" , nom_banque:"+nom_banque+" , adresse :"+adresse+","); 
             System.out.print("date de lancement de l'agence:");
             this.date_lance.affiche();
+            System.out.println("\n");
         }
 
         public String ToString()

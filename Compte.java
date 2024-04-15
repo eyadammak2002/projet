@@ -6,11 +6,11 @@ public class Compte {
     protected Double solde;
     protected Date date_creation;
     protected Agence agence;
-    protected String strType;
     protected boolean autorisation;
     private double frais_compte=15;
 
-    Operation[] operations;
+    Operation[] operations=new Operation[100];
+    int nbOperation=0;
 
 
 
@@ -22,26 +22,20 @@ public class Compte {
         date_creation=new Date();
         solde = 0.0 ;
         agence=new Agence();
-        strType="";
+        
        
     }
 
-    public Compte(int num_compte,Personne titulaire,Date date_creation,Agence agence,String strType)
+    public Compte(int num_compte,Personne titulaire,Date date_creation,Agence agence)
     { 
         this.num_compte = num_compte ;
         this.solde =0.0; 
         this.date_creation = date_creation ;
         this.titulaire = titulaire; 
         this.agence = agence; 
-        this.strType=strType;
-        if (strType.equals(new String ("courant")))
-            setautorisation(true);
-        else
-            setautorisation(false);  
+  
     }
 
-   
- 
 
     public int getnum_compte() {
         return num_compte;}
@@ -55,8 +49,7 @@ public class Compte {
         return date_creation;}
     public Agence agence()
         {return agence;}
-     public String getstrType( )
-        {return strType;}    
+  
   
  
     public void setsolde(double solde)
@@ -67,8 +60,7 @@ public class Compte {
         this.agence = agence; }
     public void setnum_compte(int num_compte)
     {this.num_compte = num_compte;}
-    public void setstrType(String strType) {
-        this.strType = strType; }
+ 
     public void setautorisation(boolean autorisation) {
         this.autorisation = autorisation; }
     public void settitulaire(Personne titulaire) {
@@ -82,30 +74,32 @@ public class Compte {
         this.titulaire.affiche(); 
     System.out.print( "\ndate de créaction du compte:" ); 
         this.date_creation.affiche(); 
-    System.out.println( "\nnumero du compte:"+num_compte+" , solde:"+solde +" \ntype du compte : "+strType+" \nautorisation : "+autorisation); 
+    System.out.println( "\nnumero du compte:"+num_compte+" , solde:"+solde +" \nautorisation : "+autorisation); 
    
     }
 
-    void retrait(double montant,DateTime date){   
+    void retrait(double montant,Date date,int h,int m,int s){   
         solde=solde-montant;
-        this.operations[this.operations.length]=new Operation(date, strType, montant, agence);
+        this.operations[this.nbOperation]=new Operation(new DateTime(date, h, m,s), "crédit", montant, agence);
+        this.nbOperation++;
+       
+
     }
     
-    void versement(double montant,DateTime date){   
+    void versement(double montant,Date date,int h,int m,int s){   
         solde=solde+montant;
-        this.operations[this.operations.length]=new Operation(date, strType, montant, agence);
-    }
-    
-    
-
+        this.operations[this.nbOperation]=new Operation(new DateTime(date, h, m,s), "débit", montant, agence);   
+        this.nbOperation++; }
     
 
-    public void fraisTrimestre(DateTime date){
+    
+
+    public void fraisTrimestre(Date date,int h,int m,int s){
         if ((date.getmois()==3)||(date.getmois()==6)||(date.getmois()==9)||(date.getmois()==12))        
         {
             solde=solde-frais_compte;
-            this.operations[this.operations.length]=new Operation(date, strType,frais_compte, agence);
-
+        this.operations[this.nbOperation]=new Operation(new DateTime(date, h, m,s),"crédit", frais_compte, agence);
+        this.nbOperation++;
         }
     }
 
@@ -113,11 +107,9 @@ public class Compte {
     
     public void extraitBancaire() {
         System.out.println("Extrait bancaire pour le compte " + num_compte);
-        // for (Operation  operation: operations) {
-        //     System.out.println(operation);
-        // }
         for(int i=0;i<operations.length;i++)
-        this.operations[i].affiche();
+         this.operations[i].affiche();
+        
     }
     
    

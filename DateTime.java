@@ -18,6 +18,13 @@ public class DateTime extends Date {
         this.seconde = seconde ;
     }
 
+    public DateTime(Date date,int heure ,int minute,int seconde)
+    {   super();
+        this.heure = heure ;
+        this.minute = minute ;
+        this.seconde = seconde ;
+    }
+
     public int getheure() {
 		return heure;
 	}
@@ -37,6 +44,8 @@ public class DateTime extends Date {
 	public void setseconde(int seconde) {
 		this.seconde = seconde;
 	}
+   
+
 
     public void affiche()
     {   super.affiche();

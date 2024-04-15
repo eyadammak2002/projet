@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class Date{
     private int jour;
@@ -7,15 +7,10 @@ public class Date{
    
 
     public Date()
-    {   System.out.println("entrer date d'aujourd'hui");
-        Scanner dat = new Scanner (System.in);
-        System.out.println("entrer le jour :"); 
-        this.jour= dat.nextInt();
-        System.out.println("entrer le mois :"); 
-        this.mois= dat.nextInt();
-        System.out.println("entrer l'année :"); 
-        this.annee= dat.nextInt();
-        System.out.println("date aujourd'hui : "+this.jour+"/"+this.mois+"/"+this.annee);
+    {  
+         this.jour = 0 ;
+        this.mois = 0 ;
+        this.annee = 0 ;
     }
     
 

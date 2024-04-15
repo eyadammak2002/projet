@@ -22,12 +22,18 @@ public class Employe extends Personne {
         this.date_embouche = date_embouche;
         this.situation(date);
     }
+    public Employe(String fonction, String situation,double salaire,Date date_embouche,Date date)
+    {   
+        super();
+        this.fonction = fonction ;
+        this.salaire = salaire; 
+        this.date_embouche = date_embouche;
+        this.situation(date);
+    }
 
    
 
-    public Date getdate_embouche() {
-    return date_embouche;
-    }
+    
     
     public String getfonction() {
         return fonction;
@@ -38,6 +44,10 @@ public class Employe extends Personne {
     public double getsalaire() {
         return salaire;
     }
+    public Date getdate_embouche() {
+    return date_embouche;
+    }
+    
    
 
     public void setfonction(String fonction) {
